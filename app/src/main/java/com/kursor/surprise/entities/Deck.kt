@@ -18,7 +18,7 @@ class Deck {
     val gameContinues: Boolean
         get() = score <= MAX_SCORE
 
-    fun useCardFromDeck(): Int {
+    private fun useCardFromDeck(): Int {
         count++
         score += deck[count]
         return deck[count]
@@ -29,18 +29,22 @@ class Deck {
         if (3 + score < MAX_SCORE || enemyCards.isEmpty()) return useCardFromDeck()
         enemyCards.sorted().reversed().forEachIndexed { index, i ->
             if (i + score < MAX_SCORE) {
+                score += i
                 enemyCards.removeAt(index)
                 return i
             }
         }
-        return enemyCards[0]
+        val aiMove = enemyCards[0]
+        score += aiMove
+        enemyCards.removeAt(0)
+        return aiMove
+
     }
 
     fun myMove(index: Int): Int {
         val move: Int
         if (index == CARD_FROM_DECK) {
             move = useCardFromDeck()
-            score += move
             return move
         }
         if (myCards[index] == USED) return INVALID_MOVE

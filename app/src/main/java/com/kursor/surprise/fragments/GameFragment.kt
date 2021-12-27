@@ -3,6 +3,7 @@ package com.kursor.surprise.fragments
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,6 +52,7 @@ class GameFragment : Fragment() {
         deckButton = view.findViewById<Button>(R.id.deck_btn).apply {
             setOnClickListener {
                 processMyMove(CARD_FROM_DECK)
+                if (deck.gameContinues) processAiMove()
             }
         }
         myButtons = listOf<Button>(
@@ -70,7 +72,6 @@ class GameFragment : Fragment() {
             button.setOnClickListener {
                 val code = processMyMove(index)
                 button.isEnabled = false
-                button.text = "${button.text}\nx"
                 if (code == VALID_MOVE) processAiMove()
             }
             button
@@ -114,7 +115,9 @@ class GameFragment : Fragment() {
         val aiMove = deck.aiMove()
         enemyPreviousMoveTextView.text = aiMove.toString()
         scoreTextView.text = deck.score.toString()
-        myButtons.forEach { it.isEnabled = true }
+        myButtons.forEachIndexed { index, button ->
+            if (deck.myCards[index] != USED) button.isEnabled = true
+        }
         if (!deck.gameContinues) {
             buildMessageYouWon()
         }
@@ -129,6 +132,12 @@ class GameFragment : Fragment() {
                 activity?.onBackPressed()
             }.create().show()
         territory.lostBattle()
+        Log.i(
+            "Game", "Congratulations, you lost. Statistics:\n" +
+                    "Final score: ${deck.score}\n" +
+                    "Your final move: ${yourPreviousMoveTextView.text}\n" +
+                    "AI final move: ${enemyPreviousMoveTextView.text}"
+        )
     }
 
     private fun buildMessageYouWon() {
@@ -140,5 +149,11 @@ class GameFragment : Fragment() {
                 activity?.onBackPressed()
             }.create().show()
         territory.wonBattle()
+        Log.i(
+            "Game", "Congratulations, you won. Statistics:\n" +
+                    "Final score: ${deck.score}\n" +
+                    "Your final move: ${yourPreviousMoveTextView.text}\n" +
+                    "AI final move: ${enemyPreviousMoveTextView.text}"
+        )
     }
 }
