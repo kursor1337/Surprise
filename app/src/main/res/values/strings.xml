@@ -2,4 +2,13 @@
     <string name="app_name">Surprise</string>
     <string name="new_game">New Game</string>
     <string name="load_game">Load Game</string>
+    <string name="deck">Deck</string>
+    <string name="enemy_previous_move">enemy previous move</string>
+    <string name="your_previous_move">your previous move</string>
+    <string name="current_score">current score</string>
+    <string name="message_go_into_battle">Do you want to go into battle?</string>
+    <string name="yes">Yes</string>
+    <string name="message_our_territory">This is our territory</string>
+    <string name="okay">Okay</string>
+    <string name="no">No</string>
 </resources>

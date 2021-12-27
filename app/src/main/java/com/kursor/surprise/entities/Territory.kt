@@ -1,17 +1,28 @@
-package com.kursor.surprise
+package com.kursor.surprise.entities
 
+import android.graphics.Color
 import android.graphics.Rect
-import java.lang.IllegalArgumentException
-import java.lang.StringBuilder
 
-class Territory(val name: String, val rect: Rect, val affiliation: Affiliation) {
+class Territory(val name: String, val rect: Rect, private var affiliationField: Affiliation) {
 
-    enum class Affiliation {
-        ALLY, ENEMY;
+    val affiliation: Affiliation
+        get() = affiliationField
+
+    enum class Affiliation(val color: Int) {
+
+        ALLY(Color.GREEN), ENEMY(Color.RED);
     }
 
     fun serialize(): String {
         return "{$name:(${rect.left}, ${rect.top}, ${rect.right}, ${rect.bottom}):$affiliation}"
+    }
+
+    fun wonBattle() {
+        affiliationField = Affiliation.ALLY
+    }
+
+    fun lostBattle() {
+        affiliationField = Affiliation.ENEMY
     }
 
     companion object {
@@ -35,4 +46,9 @@ class Territory(val name: String, val rect: Rect, val affiliation: Affiliation) 
         fun deserializeList(string: String) = string.split(";").map { deserialize(it) }
 
     }
+}
+
+fun Collection<Territory>.findByName(name: String): Territory {
+    forEach { if (it.name == name) return it }
+    throw NoSuchElementException("There is no territory with such name")
 }

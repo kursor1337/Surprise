@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Kotlin Projects/Surprise/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Kotlin Projects/Surprise/app/src/main/res/layout/fragment_game.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Kotlin Projects/Surprise/app/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="..\:/Users/skuro/AndroidStudioProjects/Surprise/app/src/main/res/layout/fragment_load_game.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/skuro/AndroidStudioProjects/Surprise/app/src/main/res/layout/fragment_main.xml" value="0.17300724637681159" />

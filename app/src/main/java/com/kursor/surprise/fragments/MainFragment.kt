@@ -1,14 +1,17 @@
-package com.kursor.surprise
+package com.kursor.surprise.fragments
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.kursor.surprise.R
+import com.kursor.surprise.TERR_NAME
+import com.kursor.surprise.entities.Territory
+import com.kursor.surprise.views.MapMenuView
 
 class MainFragment : Fragment() {
 
@@ -29,22 +32,22 @@ class MainFragment : Fragment() {
                         Territory.Affiliation.ALLY -> buildMessageOurTerritory(territory)
                     }
                 }
-
             })
         }
-
     }
 
     fun buildMessageGoIntoBattle(territory: Territory) {
         AlertDialog.Builder(activity)
             .setCancelable(true)
             .setTitle(territory.name)
-            .setMessage("Do you want to go into battle")
-            .setPositiveButton("Yes") { dialog, which ->
-                TODO("Not yet implemented")
+            .setMessage(R.string.message_go_into_battle)
+            .setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                findNavController().navigate(R.id.gameFragment, Bundle().apply {
+                    putString(TERR_NAME, territory.name)
+                })
             }
-            .setNegativeButton("No") { dialog, which ->
-                TODO("Not yet implemented")
+            .setNegativeButton(R.string.no) { dialog, which ->
+                dialog.dismiss()
             }
             .create().show()
     }
@@ -53,9 +56,9 @@ class MainFragment : Fragment() {
         AlertDialog.Builder(activity)
             .setCancelable(true)
             .setTitle(territory.name)
-            .setMessage("This is our territory")
-            .setPositiveButton("Okay") { dialog, which ->
-                TODO("Not yet implemented")
+            .setMessage(getString(R.string.message_our_territory))
+            .setPositiveButton(R.string.okay) { dialog, which ->
+                dialog.dismiss()
             }
             .create().show()
     }
