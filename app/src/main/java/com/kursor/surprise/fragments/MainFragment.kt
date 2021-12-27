@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         val mapView = view.findViewById<MapMenuView>(R.id.map_view).apply {
             addObserver(object : MapMenuView.MapObserver {
                 override fun onTerritoryClicked(territory: Territory) {
-                    when (territory.affiliation) {
+                    when (territory.faction) {
                         Territory.Affiliation.ENEMY -> buildMessageGoIntoBattle(territory)
                         Territory.Affiliation.ALLY -> buildMessageOurTerritory(territory)
                     }

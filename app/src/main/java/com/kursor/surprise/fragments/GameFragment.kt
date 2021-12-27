@@ -138,6 +138,7 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
+        Tools.save()
     }
 
     private fun buildMessageYouWon() {
@@ -155,5 +156,6 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
+        Tools.save()
     }
 }

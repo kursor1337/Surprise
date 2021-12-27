@@ -47,7 +47,7 @@ class MapMenuView : View {
         canvas.drawBitmap(mapBitmap, 0f, 0f, paint)
 
         Tools.territories.forEach { territory ->
-            paint.color = territory.affiliation.color
+            paint.color = territory.faction.color
             paint.alpha = 180
             canvas.drawRect(territory.rect, paint)
             paint.color = Color.BLACK
@@ -74,5 +74,7 @@ class MapMenuView : View {
     fun addObserver(observer: MapObserver) {
         observers.add(observer)
     }
+
+    fun update()
 
 }
