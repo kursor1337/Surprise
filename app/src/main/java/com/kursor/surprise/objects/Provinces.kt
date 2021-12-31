@@ -3,6 +3,8 @@ package com.kursor.surprise.objects
 import android.graphics.Rect
 import com.kursor.surprise.R
 import com.kursor.surprise.entities.Province
+import kotlin.math.abs
+import kotlin.math.sqrt
 
 object Provinces {
 
@@ -22,5 +24,19 @@ object Provinces {
         R.string.garazhnaya to Province(R.string.garazhnaya, Rect(1080, 1890, 1376, 2087)),
         R.string.shatokh_house to Province(R.string.shatokh_house, Rect(2132, 841, 2221, 908))
     )
+
+
+    fun distance(province1: Province, province2: Province): Double {
+        val dx = minOf(
+            abs(province1.rect.right - province2.rect.left),
+            abs(province2.rect.right - province1.rect.left)
+        )
+        val dy = minOf(
+            abs(province1.rect.top - province2.rect.bottom),
+            abs(province2.rect.top - province1.rect.bottom)
+        )
+        val cur = dx * dx + dy * dy
+        return sqrt(cur.toDouble())
+    }
 
 }

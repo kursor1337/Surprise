@@ -1,15 +1,11 @@
 package com.kursor.surprise.objects
 
 import android.util.Log
-import com.kursor.surprise.R
 import com.kursor.surprise.entities.Battle
 import com.kursor.surprise.entities.Faction
-import com.kursor.surprise.entities.Province
-import com.kursor.surprise.objects.Factions.DOUBLE_VANYA_TEAM
 import com.kursor.surprise.objects.Factions.STAR_EMPIRE
 import java.lang.IllegalStateException
 import kotlin.math.abs
-import kotlin.math.sqrt
 
 object War {
 
@@ -32,21 +28,13 @@ object War {
         if (currentTurn == STAR_EMPIRE) throw IllegalStateException("Your turn!")
         val curFaction = Factions.FACTIONS[currentTurn]!!
         val starEmpire = Factions.FACTIONS[STAR_EMPIRE]!!
-        var min = 3840 * 3840 + 2160 * 2160
+        var min = (3840 * 3840 + 2160 * 2160).toDouble()
         var prov = starEmpire.provinces[0]
         curFaction.provinces.forEach { curFactionProvince ->
             starEmpire.provinces.forEach { starEmpireProvince ->
-                val dx = minOf(
-                    abs(curFactionProvince.rect.right - starEmpireProvince.rect.left),
-                    abs(starEmpireProvince.rect.right - curFactionProvince.rect.left)
-                )
-                val dy = minOf(
-                    abs(curFactionProvince.rect.top - starEmpireProvince.rect.bottom),
-                    abs(starEmpireProvince.rect.top - curFactionProvince.rect.bottom)
-                )
-                val cur = dx * dx + dy * dy
-                if (cur < min) {
-                    min = cur
+                val dist = Provinces.distance(curFactionProvince, starEmpireProvince)
+                if (dist < min) {
+                    min = dist
                     prov = starEmpireProvince
                 }
             }
@@ -58,7 +46,7 @@ object War {
         battleCount++
         updateWarFactions()
         currentTurn = if (battleCount % (warFactions.size + 1) == 0) {
-            Factions.STAR_EMPIRE
+            STAR_EMPIRE
         } else enemyTurn()
     }
 
