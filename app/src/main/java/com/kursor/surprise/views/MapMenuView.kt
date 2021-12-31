@@ -5,9 +5,10 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.kursor.surprise.Factions
 import com.kursor.surprise.R
-import com.kursor.surprise.Tools
-import com.kursor.surprise.entities.Territory
+import com.kursor.surprise.entities.Faction
+import com.kursor.surprise.entities.Province
 
 const val TAG = "MapMenuView"
 
@@ -22,7 +23,7 @@ class MapMenuView : View {
     private val observers = mutableListOf<MapObserver>()
 
     interface MapObserver {
-        fun onTerritoryClicked(territory: Territory)
+        fun onProvinceClicked(faction: Faction, province: Province)
     }
 
     constructor(context: Context) : super(context) {
@@ -46,27 +47,38 @@ class MapMenuView : View {
 
         canvas.drawBitmap(mapBitmap, 0f, 0f, paint)
 
-        Tools.territories.forEach { territory ->
-            paint.color = territory.faction.color
-            paint.alpha = 180
-            canvas.drawRect(territory.rect, paint)
-            paint.color = Color.BLACK
-            canvas.drawText(
-                territory.name,
-                ((territory.rect.right + territory.rect.left) / 2).toFloat(),
-                ((territory.rect.bottom + territory.rect.top) / 2).toFloat(),
-                paint
-            )
+        Factions.FACTIONS.forEach { (_, faction) ->
+            faction.provinces.forEach { province ->
+                paint.color = when (faction.relationship) {
+                    Faction.Relationship.ALLY -> Color.GREEN
+                    Faction.Relationship.NEUTRAL -> faction.color
+                    Faction.Relationship.WAR -> Color.RED
+                }
+                paint.alpha = 180
+                canvas.drawRect(province.rect, paint)
+                paint.alpha = 255
+                paint.color = Color.BLACK
+                canvas.drawText(
+                    province.localizedName(context),
+                    ((province.rect.right + province.rect.left) / 2).toFloat(),
+                    ((province.rect.bottom + province.rect.top) / 2).toFloat(),
+                    paint
+                )
+            }
         }
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val x = event.x.toInt()
         val y = event.y.toInt()
-        Tools.territories.forEach { territory ->
-            if (territory.rect.contains(x, y)) {
-                observers.forEach { it.onTerritoryClicked(territory) }
+
+        Factions.FACTIONS.forEach { (_, faction) ->
+            faction.provinces.forEach { province ->
+                if (province.rect.contains(x, y)) {
+                    observers.forEach { it.onProvinceClicked(faction, province) }
+                }
             }
+
         }
         return super.onTouchEvent(event)
     }
@@ -75,6 +87,6 @@ class MapMenuView : View {
         observers.add(observer)
     }
 
-    fun update()
+    fun update(): Unit = TODO()
 
 }

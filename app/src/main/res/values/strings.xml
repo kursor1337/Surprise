@@ -11,4 +11,20 @@
     <string name="message_our_territory">This is our territory</string>
     <string name="okay">Okay</string>
     <string name="no">No</string>
+    <string name="nadya_house">Nadya\'s house</string>
+    <string name="danil_house">Danil\'s house</string>
+    <string name="eldar_house">Eldar\'s house</string>
+    <string name="sergey_house">Sergey\'s house</string>
+    <string name="vanya_house">Vanya\'s house</string>
+    <string name="sergey_old_yard">Sergey\'s old yard</string>
+    <string name="vanya_old_yard">Vanya\'s old yard</string>
+    <string name="ignat_house">Ignatov\'s house</string>
+    <string name="casino">Casino</string>
+    <string name="garazhnaya">Garazhnaya St.</string>
+    <string name="nadya">Nadya</string>
+    <string name="star_empire">Star Empire</string>
+    <string name="danil">Danil</string>
+    <string name="eldar">Eldar</string>
+    <string name="double_vanya">Double Vanya Faction</string>
+    <string name="shatokh_house">Shatokhin\'s house</string>
 </resources>

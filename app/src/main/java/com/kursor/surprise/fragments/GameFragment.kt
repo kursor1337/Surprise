@@ -12,13 +12,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.kursor.surprise.*
+import com.kursor.surprise.entities.Battle
 import com.kursor.surprise.entities.Deck
-import com.kursor.surprise.entities.Territory
-import com.kursor.surprise.entities.findByName
+import com.kursor.surprise.entities.Province
+import com.kursor.surprise.entities.findProvinceByName
 
 class GameFragment : Fragment() {
 
-    private lateinit var territory: Territory
+    private lateinit var battle: Battle
     private lateinit var myButtons: List<Button>
     private lateinit var enemyButtons: List<Button>
     private lateinit var deckButton: Button
@@ -34,12 +35,12 @@ class GameFragment : Fragment() {
             activity?.onBackPressed()
             return
         }
-        val terrName = args.getString(TERR_NAME)
-        if (terrName == null) {
+        val battleStr = args.getString(BATTLE)
+        if (battleStr == null) {
             activity?.onBackPressed()
             return
         }
-        territory = Tools.territories.findByName(terrName)
+        battle = Battle.deserialize(battleStr)
     }
 
     override fun onCreateView(
@@ -131,7 +132,7 @@ class GameFragment : Fragment() {
             .setPositiveButton("ok") { dialog, which ->
                 activity?.onBackPressed()
             }.create().show()
-        territory.lostBattle()
+        battle.lost()
         Log.i(
             "Game", "Congratulations, you lost. Statistics:\n" +
                     "Final score: ${deck.score}\n" +
@@ -149,7 +150,7 @@ class GameFragment : Fragment() {
             .setPositiveButton("ok") { dialog, which ->
                 activity?.onBackPressed()
             }.create().show()
-        territory.wonBattle()
+        battle.won()
         Log.i(
             "Game", "Congratulations, you won. Statistics:\n" +
                     "Final score: ${deck.score}\n" +
