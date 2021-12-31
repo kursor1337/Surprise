@@ -1,9 +1,8 @@
-package com.kursor.surprise
+package com.kursor.surprise.objects
 
 import android.content.Context
 import android.graphics.Color
 import com.google.gson.reflect.TypeToken
-import com.kursor.surprise.Provinces
 import com.kursor.surprise.R
 import com.kursor.surprise.entities.Faction
 import com.kursor.surprise.gson

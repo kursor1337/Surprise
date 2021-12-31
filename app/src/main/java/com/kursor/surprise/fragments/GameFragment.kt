@@ -73,7 +73,7 @@ class GameFragment : Fragment() {
             button.setOnClickListener {
                 val code = processMyMove(index)
                 button.isEnabled = false
-                if (code == VALID_MOVE) processAiMove()
+                if (code == VALID_MOVE && deck.gameContinues) processAiMove()
             }
             button
         }
@@ -139,7 +139,7 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
-        Tools.save()
+        //Tools.save()
     }
 
     private fun buildMessageYouWon() {
@@ -157,6 +157,6 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
-        Tools.save()
+        //Tools.save()
     }
 }

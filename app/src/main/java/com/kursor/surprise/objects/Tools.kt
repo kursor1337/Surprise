@@ -1,7 +1,9 @@
-package com.kursor.surprise
+package com.kursor.surprise.objects
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.kursor.surprise.PREF
+import com.kursor.surprise.SAVE
 
 object Tools {
 

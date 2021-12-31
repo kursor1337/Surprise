@@ -1,6 +1,7 @@
-package com.kursor.surprise
+package com.kursor.surprise.objects
 
 import android.graphics.Rect
+import com.kursor.surprise.R
 import com.kursor.surprise.entities.Province
 
 object Provinces {

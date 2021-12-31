@@ -5,7 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.kursor.surprise.Factions
+import com.kursor.surprise.objects.Factions
 import com.kursor.surprise.R
 import com.kursor.surprise.entities.Faction
 import com.kursor.surprise.entities.Province
@@ -86,7 +86,4 @@ class MapMenuView : View {
     fun addObserver(observer: MapObserver) {
         observers.add(observer)
     }
-
-    fun update(): Unit = TODO()
-
 }

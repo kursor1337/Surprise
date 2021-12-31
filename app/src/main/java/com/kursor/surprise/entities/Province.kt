@@ -3,7 +3,7 @@ package com.kursor.surprise.entities
 import android.content.Context
 import android.graphics.Rect
 import com.google.gson.reflect.TypeToken
-import com.kursor.surprise.Factions
+import com.kursor.surprise.objects.Factions
 import com.kursor.surprise.gson
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
@@ -13,7 +13,7 @@ class Province(val id: Int, val rect: Rect) {
     fun serialize(): String = gson.toJson(this)
 
     fun findOwner(): Faction {
-        Factions.FACTIONS.forEach { (id, faction) ->
+        Factions.FACTIONS.forEach { (_, faction) ->
             faction.provinces.forEach { province ->
                 if (id == province.id) return faction
             }
