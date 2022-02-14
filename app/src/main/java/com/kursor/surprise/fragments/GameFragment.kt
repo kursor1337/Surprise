@@ -16,6 +16,7 @@ import com.kursor.surprise.entities.Battle
 import com.kursor.surprise.entities.Deck
 import com.kursor.surprise.entities.Province
 import com.kursor.surprise.entities.findProvinceByName
+import com.kursor.surprise.objects.Tools
 
 class GameFragment : Fragment() {
 
@@ -139,7 +140,7 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
-        //Tools.save()
+        Tools.save()
     }
 
     private fun buildMessageYouWon() {
@@ -157,6 +158,6 @@ class GameFragment : Fragment() {
                     "Your final move: ${yourPreviousMoveTextView.text}\n" +
                     "AI final move: ${enemyPreviousMoveTextView.text}"
         )
-        //Tools.save()
+        Tools.save()
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Surprise</string>
+    <string name="app_name">Star Empire</string>
     <string name="new_game">New Game</string>
     <string name="load_game">Load Game</string>
     <string name="deck">Deck</string>
@@ -27,4 +27,9 @@
     <string name="eldar">Eldar</string>
     <string name="double_vanya">Double Vanya Faction</string>
     <string name="shatokh_house">Shatokhin\'s house</string>
+    <string name="restart">Restart</string>
+    <string name="narrow_passage">Narrow passage</string>
+    <string name="near_the_boiler_house">Near the Boiler house</string>
+    <string name="mini_lake">Mini lake</string>
+    <string name="congratulations">Congratulations!</string>
 </resources>

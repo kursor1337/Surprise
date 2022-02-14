@@ -24,4 +24,12 @@ object Tools {
         editor.putString(SAVE, Factions.serialize())
         editor.apply()
     }
+
+    fun restart() {
+        val editor = pref.edit()
+        editor.putString(SAVE, "")
+        editor.apply()
+        Factions.clear()
+        Factions.defaultInit()
+    }
 }

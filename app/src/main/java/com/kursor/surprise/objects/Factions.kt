@@ -57,6 +57,8 @@ object Factions {
         FACTIONS[NADYA]?.provinces?.let {
             it.add(Provinces.PROVINCES[R.string.nadya_house]!!)
             it.add(Provinces.PROVINCES[R.string.garazhnaya]!!)
+            it.add(Provinces.PROVINCES[R.string.mini_lake]!!)
+            it.add(Provinces.PROVINCES[R.string.near_the_boiler_house]!!)
         }
         FACTIONS[STAR_EMPIRE]?.provinces?.let {
             it.add(Provinces.PROVINCES[R.string.sergey_house]!!)
@@ -70,11 +72,16 @@ object Factions {
         }
         FACTIONS[ELDAR]?.provinces?.let {
             it.add(Provinces.PROVINCES[R.string.eldar_house]!!)
+            it.add(Provinces.PROVINCES[R.string.narrow_passage]!!)
         }
         FACTIONS[DOUBLE_VANYA_TEAM]?.provinces?.let {
             it.add(Provinces.PROVINCES[R.string.ignat_house]!!)
             it.add(Provinces.PROVINCES[R.string.shatokh_house]!!)
         }
+    }
+
+    fun clear() = FACTIONS.forEach { (_, faction) ->
+        faction.provinces.clear()
     }
 
     fun initFromSaved(string: String) {
